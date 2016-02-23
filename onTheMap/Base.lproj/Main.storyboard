@@ -8,7 +8,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Login" customClass="ViewController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Login" customClass="LoginViewController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -43,7 +43,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.45793071549999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuS-iD-bNL">
                                         <rect key="frame" x="0.0" y="153" width="260" height="33"/>
@@ -51,6 +51,9 @@
                                         <state key="normal" title="Login">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ImP-JG-Zbz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHm-Di-jPO">
                                         <rect key="frame" x="0.0" y="204" width="260" height="33"/>
@@ -68,6 +71,11 @@
                             <constraint firstItem="Cu3-9b-XqZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fUF-On-4V2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="RuS-iD-bNL" id="rJN-76-sPT"/>
+                        <outlet property="passwordTextField" destination="bzj-9N-ez7" id="bkc-yx-HND"/>
+                        <outlet property="userTextField" destination="yd1-Nh-17b" id="L1h-OG-PVS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
