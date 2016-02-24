@@ -79,9 +79,32 @@ class LoginViewController: UIViewController {
                 }
 
                 let newData = data.subdataWithRange(NSMakeRange(5, (data.length) - 5))
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+
+                let parsedResult: AnyObject!
+                do {
+                    parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
+                } catch {
+                    dispatch_async(dispatch_get_main_queue()){self.showAlert("The login response data could not be parsed")}
+                    return
+                }
+
+                guard let _ = parsedResult["account"]!!["registered"] as? Bool else{
+                    dispatch_async(dispatch_get_main_queue()){self.showAlert("The user does not appear as registered")}
+                    return
+                }
+
+                //print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                self.completeLogin()
+
             }
             task.resume()
+        }
+    }
+
+    private func completeLogin() {
+        dispatch_async(dispatch_get_main_queue()) {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OnTheMapNavigationController") as! UINavigationController
+            self.presentViewController(controller, animated: true, completion: nil)
         }
     }
 }
