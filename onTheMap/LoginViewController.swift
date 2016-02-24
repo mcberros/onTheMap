@@ -93,7 +93,7 @@ class LoginViewController: UIViewController {
                     return
                 }
 
-                //print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
                 self.completeLogin()
 
             }
