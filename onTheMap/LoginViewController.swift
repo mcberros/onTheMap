@@ -15,10 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
 
-    let baseUdacityURL = "https://www.udacity.com/"
-    let sessionMethod = "api/session"
-    let signUpMethod = "account/auth#!/signup"
-
     var appDelegate: AppDelegate!
 
     override func viewDidLoad() {
@@ -36,14 +32,14 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signUpButtonTouch(sender: AnyObject) {
-        let urlString = baseUdacityURL + signUpMethod
+        let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SignUpMethod
         if let url = NSURL(string: urlString) {
             UIApplication.sharedApplication().openURL(url)
         }
     }
 
     private func getSession() {
-        let urlString = baseUdacityURL + sessionMethod
+        let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SessionMethod
         if let url = NSURL(string: urlString) {
             let request = NSMutableURLRequest(URL: url)
 

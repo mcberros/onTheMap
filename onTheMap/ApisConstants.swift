@@ -10,15 +10,15 @@ extension ApisClient {
 
     struct Constants {
         static let BaseUdacityURL = "https://www.udacity.com/"
-        static let baseParseURL = "https://api.parse.com/"
-        static let parseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-        static let restApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let BaseParseURL = "https://api.parse.com/"
+        static let ParseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        static let RestApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
     }
 
     struct Methods {
         static let SessionMethod = "api/session"
         static let SignUpMethod = "account/auth#!/signup"
-        static let getStudentLocationsMethod = "1/classes/StudentLocation"
+        static let GetStudentLocationsMethod = "1/classes/StudentLocation"
     }
 
     struct ParameterKeys {

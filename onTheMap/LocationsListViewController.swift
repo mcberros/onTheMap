@@ -16,11 +16,6 @@ class LocationsListViewController: UIViewController {
     
     @IBOutlet weak var studentsTableView: UITableView!
 
-    let parseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-    let restApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-    let baseParseURL = "https://api.parse.com/"
-    let getStudentLocationsMethod = "1/classes/StudentLocation"
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -46,13 +41,13 @@ class LocationsListViewController: UIViewController {
         let parameters = [ "limit": 100,
                            "order": "-updatedAt"]
 
-        let urlString = baseParseURL + getStudentLocationsMethod + ApisClient.escapedParameters(parameters)
+        let urlString = ApisClient.Constants.BaseParseURL + ApisClient.Methods.GetStudentLocationsMethod + ApisClient.escapedParameters(parameters)
 
         if let url = NSURL(string: urlString) {
             let request = NSMutableURLRequest(URL: url)
 
-            request.addValue(parseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue(restApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue(ApisClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ApisClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
 
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request) { data, response, error in
