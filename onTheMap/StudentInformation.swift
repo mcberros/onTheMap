@@ -15,8 +15,8 @@ struct StudentInformation {
     var firstName: String
     var lastName: String
     var mapString: String
-    var latitude: Float
-    var longitude: Float
+    var latitude: Double
+    var longitude: Double
     var createdAt: String
     var updatedAt: String
     //var ACL: String
@@ -28,8 +28,8 @@ struct StudentInformation {
         firstName = dictionary["firstName"] as! String
         lastName = dictionary["lastName"] as! String
         mapString = dictionary["mapString"] as! String
-        latitude = dictionary["latitude"] as! Float
-        longitude = dictionary["longitude"] as! Float
+        latitude = dictionary["latitude"] as! Double
+        longitude = dictionary["longitude"] as! Double
         createdAt = dictionary["createdAt"] as! String
         updatedAt = dictionary["updatedAt"] as! String
         //ACL = dictionary[""]

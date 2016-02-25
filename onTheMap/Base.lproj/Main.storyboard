@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -136,7 +137,7 @@
         <!--Map-->
         <scene sceneID="llc-XH-MmD">
             <objects>
-                <viewController id="eWM-BX-ydK" sceneMemberID="viewController">
+                <viewController id="eWM-BX-ydK" customClass="MapViewController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sdc-cs-vnm"/>
                         <viewControllerLayoutGuide type="bottom" id="BDi-5Z-NBd"/>
@@ -144,9 +145,23 @@
                     <view key="view" contentMode="scaleToFill" id="Srh-fa-CaQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OUV-sz-Pu7">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BDi-5Z-NBd" firstAttribute="top" secondItem="OUV-sz-Pu7" secondAttribute="bottom" id="SbR-3R-c1i"/>
+                            <constraint firstItem="OUV-sz-Pu7" firstAttribute="top" secondItem="Sdc-cs-vnm" secondAttribute="bottom" id="d43-d0-o0x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OUV-sz-Pu7" secondAttribute="trailing" constant="-20" id="fcg-H6-ErV"/>
+                            <constraint firstItem="OUV-sz-Pu7" firstAttribute="leading" secondItem="Srh-fa-CaQ" secondAttribute="leadingMargin" constant="-20" id="r87-CH-QkP"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="caN-3S-FCk" userLabel="MapItem"/>
+                    <connections>
+                        <outlet property="mapView" destination="OUV-sz-Pu7" id="1ur-lB-jCQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHp-CT-6Ou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

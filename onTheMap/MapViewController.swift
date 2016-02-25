@@ -1,38 +1,32 @@
 //
-//  LocationsListViewController.swift
+//  MapViewController.swift
 //  onTheMap
 //
-//  Created by Carmen Berros on 24/02/16.
+//  Created by Carmen Berros on 25/02/16.
 //  Copyright © 2016 mcberros. All rights reserved.
 //
 
 import UIKit
+import MapKit
 
-class LocationsListViewController: UIViewController {
-
+class MapViewController: UIViewController {
     var students: [StudentInformation]?
-
+    var annotations: [MKPointAnnotation]?
     var appDelegate: AppDelegate!
-    
-    @IBOutlet weak var studentsTableView: UITableView!
+
+    @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         students = appDelegate.students
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
+        annotations = [MKPointAnnotation]()
         getLocationsList()
     }
 
     private func getLocationsList(){
-
         let parameters = [ "limit": 100,
-                           "order": "-updatedAt"]
+            "order": "-updatedAt"]
 
         let urlString = ApisClient.Constants.BaseParseURL + ApisClient.Methods.GetStudentLocationsMethod + ApisClient.escapedParameters(parameters)
 
@@ -76,39 +70,64 @@ class LocationsListViewController: UIViewController {
                 self.students = StudentInformation.studentsFromResults(results)
                 self.appDelegate.students = self.students!
 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.studentsTableView.reloadData()
+                self.getAnnotations()
+
+                if let annotations = self.annotations {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.mapView.addAnnotations(annotations)
+                    }
                 }
 
             }
             task.resume()
         }
     }
+
+    private func getAnnotations() {
+        for student in self.students! {
+            let lat = CLLocationDegrees(student.latitude)
+            let long = CLLocationDegrees(student.longitude)
+
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+
+            let firstName = student.firstName
+            let lastName = student.lastName
+            let mediURL = student.mediaURL
+
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = "\(firstName) \(lastName)"
+            annotation.subtitle = mediURL
+
+            annotations!.append(annotation)
+        }
+    }
 }
 
-extension LocationsListViewController: UITableViewDelegate, UITableViewDataSource {
+extension MapViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellReuseIdentifier = "StudentInformationTableViewCell"
-        let student = students![indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
 
-        cell.textLabel!.text = student.firstName + student.lastName
-        cell.imageView!.image = UIImage(named: "Pin")
-        cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = UIColor.redColor()
+            pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        } else {
+            pinView!.annotation = annotation
+        }
 
-
-        return cell
+        return pinView
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students!.count
-    }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let urlString = students![indexPath.row].mediaURL
-        if let url = NSURL(string: urlString) {
-            UIApplication.sharedApplication().openURL(url)
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            let app = UIApplication.sharedApplication()
+            if let toOpen = view.annotation?.subtitle! {
+                app.openURL(NSURL(string: toOpen)!)
+            }
         }
     }
 }
