@@ -9,7 +9,8 @@
 import UIKit
 
 class LocationsListViewController: UIViewController {
-    var students: [StudentInformation] = [StudentInformation]()
+
+    var students: [StudentInformation]?
 
     var appDelegate: AppDelegate!
     
@@ -24,12 +25,20 @@ class LocationsListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        students = appDelegate.students
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "logoutButtonTouchUp")
+
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         getLocationsList()
+    }
+
+    private func logoutButtonTouchUp() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     private func getLocationsList(){
@@ -77,6 +86,7 @@ class LocationsListViewController: UIViewController {
                 }
 
                 self.students = StudentInformation.studentsFromResults(results)
+                self.appDelegate.students = self.students!
 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.studentsTableView.reloadData()
@@ -92,7 +102,7 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellReuseIdentifier = "StudentInformationTableViewCell"
-        let student = students[indexPath.row]
+        let student = students![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
 
         cell.textLabel!.text = student.firstName + student.lastName
@@ -104,11 +114,11 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students.count
+        return students!.count
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let urlString = students[indexPath.row].mediaURL
+        let urlString = students![indexPath.row].mediaURL
         if let url = NSURL(string: urlString) {
             UIApplication.sharedApplication().openURL(url)
         }

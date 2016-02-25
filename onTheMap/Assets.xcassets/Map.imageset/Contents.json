@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "map.png",
+      "filename" : "map.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
+      "filename" : "map-1.pdf",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
+      "filename" : "map-2.pdf",
       "scale" : "3x"
     }
   ],

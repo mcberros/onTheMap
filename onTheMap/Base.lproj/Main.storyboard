@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login-->
@@ -170,8 +171,26 @@
         <!--TabController-->
         <scene sceneID="cc6-hJ-cAE">
             <objects>
-                <tabBarController title="TabController" id="79j-DT-ENn" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="On The Map" id="gbc-VM-txj"/>
+                <tabBarController title="TabController" id="79j-DT-ENn" customClass="TabBarController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="On The Map" id="gbc-VM-txj">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="VHz-BD-3px">
+                            <connections>
+                                <action selector="logoutButtonItemTouch:" destination="79j-DT-ENn" id="DKT-IX-QaJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="zT9-Mq-7LY">
+                                <connections>
+                                    <action selector="refreshButtonItemTouch:" destination="79j-DT-ENn" id="hUm-q2-M2K"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Pin" id="zqc-AV-gh4">
+                                <connections>
+                                    <action selector="pinButtonItemTouch:" destination="79j-DT-ENn" id="ngE-aa-gdC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5gx-fh-gFt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -189,6 +208,7 @@
     </scenes>
     <resources>
         <image name="List" width="32" height="32"/>
-        <image name="Map" width="44" height="44"/>
+        <image name="Map" width="32" height="32"/>
+        <image name="Pin" width="32" height="32"/>
     </resources>
 </document>

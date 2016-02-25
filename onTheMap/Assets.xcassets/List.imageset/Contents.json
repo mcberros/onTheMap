@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "list_32.png",
+      "filename" : "list.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "list_128.png",
+      "filename" : "list-1.pdf",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "list_128-1.png",
+      "filename" : "list-2.pdf",
       "scale" : "3x"
     }
   ],
