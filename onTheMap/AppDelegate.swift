@@ -41,6 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+
+extension AppDelegate {
+    func showAlert(view: UIViewController, message: String) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) {(_) in }
+
+        alertController.addAction(dismissAction)
+        view.presentViewController(alertController, animated: true, completion: nil)
+    }
+}

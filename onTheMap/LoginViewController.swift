@@ -19,14 +19,17 @@ class LoginViewController: UIViewController {
     let sessionMethod = "api/session"
     let signUpMethod = "account/auth#!/signup"
 
+    var appDelegate: AppDelegate!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     }
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
         if userTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            showAlert("Empty Email or Password")
+            appDelegate.showAlert(self, message: "Empty Email or Password")
         } else {
             self.getSession()
         }
@@ -37,14 +40,6 @@ class LoginViewController: UIViewController {
         if let url = NSURL(string: urlString) {
             UIApplication.sharedApplication().openURL(url)
         }
-    }
-
-    private func showAlert(message: String) {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) {(_) in }
-
-        alertController.addAction(dismissAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     private func getSession() {
@@ -60,21 +55,21 @@ class LoginViewController: UIViewController {
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request) { data, response, error in
                 guard (error == nil) else {
-                    dispatch_async(dispatch_get_main_queue()){self.showAlert("Connection error")}
+                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Connection error")}
                     return
                 }
 
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                     if (response as? NSHTTPURLResponse)?.statusCode == 403 {
-                        dispatch_async(dispatch_get_main_queue()){self.showAlert("Invalid email or password")}
+                        dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Invalid email or password")}
                     } else {
-                        dispatch_async(dispatch_get_main_queue()){self.showAlert("Your request returned an invalid response")}
+                        dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Your request returned an invalid response")}
                     }
                     return
                 }
 
                 guard let data = data else {
-                    dispatch_async(dispatch_get_main_queue()){self.showAlert("No data was returned by the request")}
+                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "No data was returned by the request")}
                     return
                 }
 
@@ -84,12 +79,12 @@ class LoginViewController: UIViewController {
                 do {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                 } catch {
-                    dispatch_async(dispatch_get_main_queue()){self.showAlert("The login response data could not be parsed")}
+                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "The login response data could not be parsed")}
                     return
                 }
 
                 guard let _ = parsedResult["account"]!!["registered"] as? Bool else{
-                    dispatch_async(dispatch_get_main_queue()){self.showAlert("The user does not appear as registered")}
+                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "The user does not appear as registered")}
                     return
                 }
 
