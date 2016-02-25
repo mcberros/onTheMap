@@ -13,6 +13,8 @@ class LocationsListViewController: UIViewController {
 
     var appDelegate: AppDelegate!
     
+    @IBOutlet weak var studentsTableView: UITableView!
+
     let parseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
     let restApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
     let baseParseURL = "https://api.parse.com/"
@@ -74,13 +76,41 @@ class LocationsListViewController: UIViewController {
                     return
                 }
 
-                let students = StudentInformation.studentsFromResults(results)
+                self.students = StudentInformation.studentsFromResults(results)
 
-                print(students)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.studentsTableView.reloadData()
+                }
+
             }
             task.resume()
         }
+    }
+}
+
+extension LocationsListViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellReuseIdentifier = "StudentInformationTableViewCell"
+        let student = students[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
+
+        cell.textLabel!.text = student.firstName + student.lastName
+        cell.imageView!.image = UIImage(named: "Pin")
+        cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
 
 
+        return cell
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return students.count
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let urlString = students[indexPath.row].mediaURL
+        if let url = NSURL(string: urlString) {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
 }

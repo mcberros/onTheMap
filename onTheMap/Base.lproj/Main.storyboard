@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login-->
@@ -85,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="565" y="479"/>
         </scene>
-        <!--List-->
+        <!--Locations-->
         <scene sceneID="0Rv-6X-irA">
             <objects>
-                <viewController id="DHm-p7-vAd" customClass="LocationsListViewController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DHm-p7-vAd" userLabel="Locations" customClass="LocationsListViewController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Agj-nr-MIA"/>
                         <viewControllerLayoutGuide type="bottom" id="me6-wr-Gab"/>
@@ -97,30 +96,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J9F-Fz-Epr">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="36" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="J9F-Fz-Epr" userLabel="Students Table View">
+                                <rect key="frame" x="0.0" y="5" width="600" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentInformationTableViewCell" id="E2g-A2-arQ">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentInformationTableViewCell" rowHeight="36" id="E2g-A2-arQ">
+                                        <rect key="frame" x="0.0" y="65" width="600" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E2g-A2-arQ" id="xM2-Qr-2iF">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DHm-p7-vAd" id="eQh-e7-8HN"/>
+                                    <outlet property="delegate" destination="DHm-p7-vAd" id="env-2i-S8J"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="me6-wr-Gab" firstAttribute="top" secondItem="J9F-Fz-Epr" secondAttribute="bottom" id="Nrc-6l-5Tk"/>
+                            <constraint firstItem="J9F-Fz-Epr" firstAttribute="bottom" secondItem="me6-wr-Gab" secondAttribute="top" id="Nrc-6l-5Tk"/>
                             <constraint firstItem="J9F-Fz-Epr" firstAttribute="top" secondItem="Agj-nr-MIA" secondAttribute="bottom" id="kwz-S0-udm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="J9F-Fz-Epr" secondAttribute="trailing" constant="-20" id="uwg-WZ-vuL"/>
-                            <constraint firstItem="J9F-Fz-Epr" firstAttribute="leading" secondItem="xbo-4Q-Bae" secondAttribute="leadingMargin" constant="-20" id="xBA-Hm-hCD"/>
+                            <constraint firstAttribute="trailing" secondItem="J9F-Fz-Epr" secondAttribute="trailing" id="uwg-WZ-vuL"/>
+                            <constraint firstItem="J9F-Fz-Epr" firstAttribute="leading" secondItem="xbo-4Q-Bae" secondAttribute="leading" id="xBA-Hm-hCD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="List" id="oen-yo-nOV" userLabel="ListItem"/>
+                    <connections>
+                        <outlet property="studentsTableView" destination="J9F-Fz-Epr" id="cfI-IT-Yb5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJl-cQ-czz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
