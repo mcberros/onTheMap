@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="36" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="J9F-Fz-Epr" userLabel="Students Table View">
-                                <rect key="frame" x="0.0" y="5" width="600" height="520"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="461"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentInformationTableViewCell" rowHeight="36" id="E2g-A2-arQ">
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJl-cQ-czz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611" y="832"/>
+            <point key="canvasLocation" x="2611" y="825"/>
         </scene>
         <!--Map-->
         <scene sceneID="llc-XH-MmD">
