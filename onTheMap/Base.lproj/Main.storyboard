@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJl-cQ-czz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611" y="825"/>
+            <point key="canvasLocation" x="2611" y="861"/>
         </scene>
         <!--Map-->
         <scene sceneID="llc-XH-MmD">
@@ -166,6 +166,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHp-CT-6Ou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2611" y="133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WuB-UM-hen">
+            <objects>
+                <navigationController id="6Om-o4-RvD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wMc-ro-EY3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DYM-G8-59c" kind="relationship" relationship="rootViewController" id="7kx-Lg-hKM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3iF-b2-Kd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3298" y="500"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="J6Y-h9-pRt">
+            <objects>
+                <viewController id="DYM-G8-59c" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j6K-hj-boZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Er-mO-57H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fik-ii-5Pf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter Your Location Here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IMN-VE-ILQ">
+                                <rect key="frame" x="0.0" y="197" width="601" height="268"/>
+                                <color key="backgroundColor" red="0.0" green="0.66031044407894723" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5av-yZ-gm5">
+                                <rect key="frame" x="218" y="503" width="138" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                <state key="normal" title="Find on the Map"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where are you studying today?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-gq-dS1">
+                                <rect key="frame" x="230" y="72" width="141" height="110"/>
+                                <color key="backgroundColor" red="0.91237493146929816" green="0.91175815515350889" blue="0.90463952850877183" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91237493150000004" green="0.91175815520000003" blue="0.90463952849999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qdM-tI-wKJ">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="dSi-Re-ECO"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgM-aR-BCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3985" y="500"/>
         </scene>
         <!--On The Map Navigation-->
         <scene sceneID="8dr-pz-33O">
@@ -202,6 +261,7 @@
                             <barButtonItem image="Pin" id="zqc-AV-gh4">
                                 <connections>
                                     <action selector="pinButtonItemTouch:" destination="79j-DT-ENn" id="ngE-aa-gdC"/>
+                                    <segue destination="6Om-o4-RvD" kind="presentation" id="JAj-od-2NJ"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
