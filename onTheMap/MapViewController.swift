@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         students = appDelegate.students
         annotations = [MKPointAnnotation]()
@@ -77,7 +78,6 @@ class MapViewController: UIViewController {
                         self.mapView.addAnnotations(annotations)
                     }
                 }
-
             }
             task.resume()
         }
@@ -92,12 +92,12 @@ class MapViewController: UIViewController {
 
             let firstName = student.firstName
             let lastName = student.lastName
-            let mediURL = student.mediaURL
+            let mediaURL = student.mediaURL
 
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
             annotation.title = "\(firstName) \(lastName)"
-            annotation.subtitle = mediURL
+            annotation.subtitle = mediaURL
 
             annotations!.append(annotation)
         }
@@ -106,7 +106,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "pin"
+        let reuseId = "Student"
 
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
 
