@@ -208,11 +208,32 @@
                                 <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                 <state key="normal" title="Find on the Map"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where are you studying today?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-gq-dS1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-gq-dS1">
                                 <rect key="frame" x="230" y="72" width="141" height="110"/>
                                 <color key="backgroundColor" red="0.91237493146929816" green="0.91175815515350889" blue="0.90463952850877183" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Where are you ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="studying">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" today?">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
