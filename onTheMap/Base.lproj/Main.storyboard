@@ -199,20 +199,20 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter Your Location Here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IMN-VE-ILQ">
-                                        <rect key="frame" x="0.0" y="116" width="601" height="268"/>
+                                        <rect key="frame" x="32" y="134" width="386" height="268"/>
                                         <color key="backgroundColor" red="0.0" green="0.66031044407894723" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5av-yZ-gm5">
-                                        <rect key="frame" x="218" y="444" width="138" height="30"/>
+                                        <rect key="frame" x="176" y="448" width="125" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                         <state key="normal" title="Find on the Map"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-gq-dS1">
-                                        <rect key="frame" x="208" y="0.0" width="141" height="110"/>
+                                        <rect key="frame" x="176" y="8" width="131" height="109"/>
                                         <color key="backgroundColor" red="0.91237493146929816" green="0.91175815515350889" blue="0.90463952850877183" alpha="1" colorSpace="calibratedRGB"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Where are you ">
@@ -245,10 +245,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.91237493150000004" green="0.91175815520000003" blue="0.90463952849999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="9Er-mO-57H" firstAttribute="top" secondItem="9Nx-WG-1cj" secondAttribute="bottom" id="448-D1-cCX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Nx-WG-1cj" secondAttribute="trailing" constant="-20" id="FNf-SL-zff"/>
-                            <constraint firstItem="9Nx-WG-1cj" firstAttribute="top" secondItem="j6K-hj-boZ" secondAttribute="bottom" id="u1t-HY-ztw"/>
-                            <constraint firstItem="9Nx-WG-1cj" firstAttribute="leading" secondItem="Fik-ii-5Pf" secondAttribute="leadingMargin" constant="-20" id="xum-pk-nlH"/>
+                            <constraint firstItem="9Nx-WG-1cj" firstAttribute="leading" secondItem="Fik-ii-5Pf" secondAttribute="leading" id="4eJ-kP-zEc"/>
+                            <constraint firstItem="9Nx-WG-1cj" firstAttribute="top" secondItem="j6K-hj-boZ" secondAttribute="bottom" id="GAj-D3-Oan"/>
+                            <constraint firstAttribute="trailing" secondItem="9Nx-WG-1cj" secondAttribute="trailing" id="IhH-K9-WVp"/>
+                            <constraint firstItem="9Nx-WG-1cj" firstAttribute="bottom" secondItem="9Er-mO-57H" secondAttribute="top" id="d5K-Th-c1X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qdM-tI-wKJ">
