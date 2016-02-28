@@ -252,7 +252,7 @@
                                     <constraint firstItem="Dc2-gq-dS1" firstAttribute="centerX" secondItem="9Nx-WG-1cj" secondAttribute="centerX" id="n8U-At-2O1"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEY-NN-4X0" userLabel="Second Step View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEY-NN-4X0" userLabel="Second Step View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bC-Ee-mdZ" userLabel="URL Text Field">
@@ -274,7 +274,7 @@
                                         </constraints>
                                     </mapView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.91237493150000004" green="0.91175815520000003" blue="0.90463952849999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="c4G-eE-4zq" secondAttribute="bottom" constant="92" id="JoW-q0-tGS"/>
                                     <constraint firstItem="1IP-U4-tYZ" firstAttribute="centerX" secondItem="xEY-NN-4X0" secondAttribute="centerX" id="Tad-Jz-kVc"/>
