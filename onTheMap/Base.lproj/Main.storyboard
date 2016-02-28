@@ -187,7 +187,7 @@
         <!--Information Posting View Controller-->
         <scene sceneID="J6Y-h9-pRt">
             <objects>
-                <viewController id="DYM-G8-59c" userLabel="Information Posting View Controller" sceneMemberID="viewController">
+                <viewController id="DYM-G8-59c" userLabel="Information Posting View Controller" customClass="InformationPostingViewController" customModule="onTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j6K-hj-boZ"/>
                         <viewControllerLayoutGuide type="bottom" id="9Er-mO-57H"/>
@@ -240,6 +240,9 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                         <state key="normal" title="Find on the Map"/>
+                                        <connections>
+                                            <action selector="findOnTheMapButtonTouch:" destination="DYM-G8-59c" eventType="touchUpInside" id="OkC-Ro-4o9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91237493150000004" green="0.91175815520000003" blue="0.90463952849999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -266,6 +269,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-eE-4zq" userLabel="Submit Button">
                                         <rect key="frame" x="276" y="414" width="49" height="30"/>
                                         <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="submitButtonTouch:" destination="DYM-G8-59c" eventType="touchUpInside" id="x84-0m-JTT"/>
+                                        </connections>
                                     </button>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-U4-tYZ">
                                         <rect key="frame" x="196" y="127" width="223" height="262"/>
@@ -301,8 +307,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qdM-tI-wKJ">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="dSi-Re-ECO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="dSi-Re-ECO">
+                            <connections>
+                                <action selector="cancelButtonTouch:" destination="DYM-G8-59c" id="AVm-nE-d4M"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="firstStepView" destination="9Nx-WG-1cj" id="s2V-C3-p1Z"/>
+                        <outlet property="mediaURLTextField" destination="2bC-Ee-mdZ" id="WqD-79-Oyc"/>
+                        <outlet property="secondStepView" destination="xEY-NN-4X0" id="G2i-fi-SIw"/>
+                        <outlet property="whereTextField" destination="kuN-ov-o0Q" id="iYt-bi-GNr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgM-aR-BCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
