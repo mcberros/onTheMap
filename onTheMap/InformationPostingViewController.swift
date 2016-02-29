@@ -13,10 +13,12 @@ import AddressBookUI
 
 class InformationPostingViewController: UIViewController {
 
+    @IBOutlet weak var whereLabel: UILabel!
     @IBOutlet weak var whereTextField: UITextField!
     @IBOutlet weak var mediaURLTextField: UITextField!
-    @IBOutlet weak var firstStepView: UIView!
-    @IBOutlet weak var secondStepView: UIView!
+    @IBOutlet weak var findOnTheMapButton: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var submitButton: UIButton!
 
     var appDelegate: AppDelegate!
     var mapString: String?
@@ -26,6 +28,7 @@ class InformationPostingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        prepareUIForFirstStep()
     }
 
     @IBAction func findOnTheMapButtonTouch(sender: AnyObject) {
@@ -46,6 +49,26 @@ class InformationPostingViewController: UIViewController {
 
     @IBAction func cancelButtonTouch(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    private func prepareUIForFirstStep() {
+        whereLabel.hidden = false
+        whereTextField.hidden = false
+        findOnTheMapButton.hidden = false
+
+        mediaURLTextField.hidden = true
+        mapView.hidden = true
+        submitButton.hidden = true
+    }
+
+    private func prepareUIForSecondtStep() {
+        whereLabel.hidden = true
+        whereTextField.hidden = true
+        findOnTheMapButton.hidden = true
+
+        mediaURLTextField.hidden = false
+        mapView.hidden = false
+        submitButton.hidden = false
     }
 
     private func forwardGeocoding(address: String) {
@@ -78,9 +101,7 @@ class InformationPostingViewController: UIViewController {
             return
         }
 
-        firstStepView.hidden = true
-        secondStepView.hidden = false
-
+        prepareUIForSecondtStep()
         // Pin on map
 
     }
