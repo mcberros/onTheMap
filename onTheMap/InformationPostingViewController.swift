@@ -22,6 +22,7 @@ class InformationPostingViewController: UIViewController {
 
     var appDelegate: AppDelegate!
     var mapString: String?
+    var coordinate: CLLocationCoordinate2D?
     var latitude: Double?
     var longitude: Double?
 
@@ -86,10 +87,10 @@ class InformationPostingViewController: UIViewController {
 
             let placemark = placemarks?[0]
             let location = placemark?.location
-            let coordinate = location?.coordinate
+            self.coordinate = location?.coordinate
             self.mapString = self.whereTextField!.text
-            self.latitude = coordinate!.latitude
-            self.longitude = coordinate!.longitude
+            self.latitude = self.coordinate!.latitude
+            self.longitude = self.coordinate!.longitude
             self.nextStep()
 
         }
@@ -101,8 +102,12 @@ class InformationPostingViewController: UIViewController {
             return
         }
 
+        let pointAnnotation:MKPointAnnotation = MKPointAnnotation()
+        pointAnnotation.coordinate = coordinate!
+        mapView?.addAnnotation(pointAnnotation)
+        mapView?.centerCoordinate = coordinate!
+
         prepareUIForSecondtStep()
-        // Pin on map
 
     }
 
