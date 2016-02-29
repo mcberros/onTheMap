@@ -50,7 +50,7 @@ class InformationPostingViewController: UIViewController {
 
     private func forwardGeocoding(address: String) {
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
-            // Show activity indicator
+
             guard error == nil else {
                 self.appDelegate.showAlert(self, message: "Geocoding failed")
                 return
@@ -67,7 +67,6 @@ class InformationPostingViewController: UIViewController {
             self.mapString = self.whereTextField!.text
             self.latitude = coordinate!.latitude
             self.longitude = coordinate!.longitude
-            // Remove activity indicator
             self.nextStep()
 
         }
@@ -133,8 +132,12 @@ class InformationPostingViewController: UIViewController {
                 return
             }
 
-            print(parsedResult)
+            dispatch_async(dispatch_get_main_queue()){
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
+        // Show activity indicator
         task.resume()
+        // Remove activity indicator
     }
 }
