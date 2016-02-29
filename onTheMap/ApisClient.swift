@@ -45,4 +45,12 @@ class ApisClient : NSObject {
 
         return Singleton.sharedInstance
     }
+
+    class func substituteKeyInMethod(method: String, key: String, value: String) -> String? {
+        if method.rangeOfString("{\(key)}") != nil {
+            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+        } else {
+            return nil
+        }
+    }
 }

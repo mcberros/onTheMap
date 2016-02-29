@@ -19,10 +19,15 @@ extension ApisClient {
         static let SessionMethod = "api/session"
         static let SignUpMethod = "account/auth#!/signup"
         static let GetStudentLocationsMethod = "1/classes/StudentLocation"
+        static let GetStudentInfo = "api/users/{user_id}"
     }
 
     struct ParameterKeys {
         static let Limit = "limit"
         static let Order = "order"
+    }
+
+    struct URLSKeys {
+        static let UserId = "user_id"
     }
 }
