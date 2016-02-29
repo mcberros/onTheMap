@@ -19,6 +19,7 @@ class InformationPostingViewController: UIViewController {
     @IBOutlet weak var findOnTheMapButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     var appDelegate: AppDelegate!
     var mapString: String?
@@ -75,14 +76,28 @@ class InformationPostingViewController: UIViewController {
     private func forwardGeocoding(address: String) {
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
 
+            dispatch_async(dispatch_get_main_queue()){
+                self.activityIndicator.startAnimating()
+            }
+
             guard error == nil else {
-                self.appDelegate.showAlert(self, message: "Geocoding failed")
+                dispatch_async(dispatch_get_main_queue()){
+                    self.appDelegate.showAlert(self, message: "Geocoding failed")
+                    self.activityIndicator.stopAnimating()
+                }
                 return
             }
 
             guard (placemarks?.count > 0) else {
-                self.appDelegate.showAlert(self, message: "No placemarks found")
+                dispatch_async(dispatch_get_main_queue()){
+                    self.appDelegate.showAlert(self, message: "No placemarks found")
+                    self.activityIndicator.stopAnimating()
+                }
                 return
+            }
+
+            dispatch_async(dispatch_get_main_queue()){
+                self.activityIndicator.stopAnimating()
             }
 
             let placemark = placemarks?[0]
@@ -162,8 +177,6 @@ class InformationPostingViewController: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
-        // Show activity indicator
         task.resume()
-        // Remove activity indicator
     }
 }

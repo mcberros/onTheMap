@@ -195,6 +195,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-gq-dS1">
+                                <rect key="frame" x="220" y="78" width="155" height="94"/>
+                                <color key="backgroundColor" red="0.91237493146929816" green="0.91175815515350889" blue="0.90463952850877183" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="94" id="RCz-fg-6bj"/>
+                                    <constraint firstAttribute="width" constant="155" id="wnX-Dq-PbB"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Where are you ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="studying">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" today?">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kuN-ov-o0Q" userLabel="Where Text Field">
                                 <rect key="frame" x="167" y="180" width="260" height="30"/>
                                 <constraints>
@@ -232,38 +264,10 @@
                                     <action selector="submitButtonTouch:" destination="DYM-G8-59c" eventType="touchUpInside" id="x84-0m-JTT"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-gq-dS1">
-                                <rect key="frame" x="220" y="78" width="155" height="94"/>
-                                <color key="backgroundColor" red="0.91237493146929816" green="0.91175815515350889" blue="0.90463952850877183" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="94" id="RCz-fg-6bj"/>
-                                    <constraint firstAttribute="width" constant="155" id="wnX-Dq-PbB"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Where are you ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="21" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="studying">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="21" name="HelveticaNeue-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" today?">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.43289987664473656" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="21" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3S9-nT-XkG">
+                                <rect key="frame" x="279" y="318" width="37" height="37"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.91237493150000004" green="0.91175815520000003" blue="0.90463952849999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -271,6 +275,8 @@
                             <constraint firstItem="2bC-Ee-mdZ" firstAttribute="centerX" secondItem="Fik-ii-5Pf" secondAttribute="centerX" id="8mJ-2r-BTI"/>
                             <constraint firstItem="9Er-mO-57H" firstAttribute="top" secondItem="1IP-U4-tYZ" secondAttribute="bottom" id="9kM-fu-Mfx"/>
                             <constraint firstItem="2bC-Ee-mdZ" firstAttribute="top" secondItem="j6K-hj-boZ" secondAttribute="bottom" constant="53" id="Apf-qv-KuG"/>
+                            <constraint firstItem="3S9-nT-XkG" firstAttribute="top" secondItem="j6K-hj-boZ" secondAttribute="bottom" constant="258" id="RJs-Sx-nzT"/>
+                            <constraint firstItem="3S9-nT-XkG" firstAttribute="centerX" secondItem="Fik-ii-5Pf" secondAttribute="centerX" id="URJ-11-kY3"/>
                             <constraint firstItem="kuN-ov-o0Q" firstAttribute="top" secondItem="Dc2-gq-dS1" secondAttribute="bottom" constant="8" id="Uzt-WS-Oex"/>
                             <constraint firstItem="Dc2-gq-dS1" firstAttribute="top" secondItem="j6K-hj-boZ" secondAttribute="bottom" constant="14" id="XFv-BF-zKF"/>
                             <constraint firstItem="c4G-eE-4zq" firstAttribute="top" secondItem="1IP-U4-tYZ" secondAttribute="bottom" constant="-55" id="aZ5-Re-tKD"/>
@@ -291,6 +297,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="3S9-nT-XkG" id="xzy-If-Onr"/>
                         <outlet property="findOnTheMapButton" destination="5av-yZ-gm5" id="0Qq-Sn-SBa"/>
                         <outlet property="mapView" destination="1IP-U4-tYZ" id="D8u-IQ-OFE"/>
                         <outlet property="mediaURLTextField" destination="2bC-Ee-mdZ" id="WqD-79-Oyc"/>
