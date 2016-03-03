@@ -93,7 +93,7 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
         let student = students![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
 
-        cell.textLabel!.text = student.firstName + student.lastName
+        cell.textLabel!.text = "\(student.firstName) \(student.lastName)"
         cell.imageView!.image = UIImage(named: "Pin")
         cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
 
