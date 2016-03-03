@@ -108,7 +108,9 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let urlString = students![indexPath.row].mediaURL
         if let url = NSURL(string: urlString) {
-            UIApplication.sharedApplication().openURL(url)
+            if !UIApplication.sharedApplication().openURL(url){
+                appDelegate.showAlert(self, message: "Invalid link")
+            }
         }
     }
 }
