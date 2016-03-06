@@ -27,6 +27,10 @@ class LoginViewController: UIViewController {
         // tapRecognizer
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer?.numberOfTapsRequired = 1
+
+        // text field delegate
+        userTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -214,5 +218,12 @@ extension LoginViewController {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }

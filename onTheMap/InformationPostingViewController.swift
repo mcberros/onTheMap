@@ -27,10 +27,30 @@ class InformationPostingViewController: UIViewController {
     var latitude: Double?
     var longitude: Double?
 
+    var tapRecognizer: UITapGestureRecognizer? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         prepareUIForFirstStep()
+
+        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        tapRecognizer?.numberOfTapsRequired = 1
+
+        whereTextField.delegate = self
+        mediaURLTextField.delegate = self
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.addKeyboardDismissRecognizer()
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.removeKeyboardDismissRecognizer()
     }
 
     @IBAction func findOnTheMapButtonTouch(sender: AnyObject) {
@@ -179,4 +199,29 @@ class InformationPostingViewController: UIViewController {
         }
         task.resume()
     }
+}
+
+extension InformationPostingViewController {
+
+    func addKeyboardDismissRecognizer() {
+        self.view.addGestureRecognizer(tapRecognizer!)
+    }
+
+    func removeKeyboardDismissRecognizer() {
+        self.view.removeGestureRecognizer(tapRecognizer!)
+    }
+
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+
+}
+
+extension InformationPostingViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
+
 }
