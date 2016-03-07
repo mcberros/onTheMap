@@ -13,6 +13,8 @@ class ApisClient : NSObject {
     var session: NSURLSession
 
     var userID: String? = nil
+    var firstName: String?
+    var lastName: String?
 
     override init() {
         session = NSURLSession.sharedSession()
@@ -53,12 +55,44 @@ class ApisClient : NSObject {
 
                 let newData = data.subdataWithRange(NSMakeRange(5, (data.length) - 5))
 
+                ApisClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+
+            }
+            task.resume()
+        }
+    }
+
+    func taskForGETMethod(urlString: String, completionHandler: (success: Bool, result: AnyObject!, errorString: String) -> Void) {
+        let url = NSURL(string: urlString)
+
+        if let url = url {
+            let request = NSMutableURLRequest(URL: url)
+
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard error == nil else {
+                    completionHandler(success: false, result: nil, errorString: "Connection error")
+                    return
+                }
+
+                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                    completionHandler(success: false, result: nil, errorString: "Your request returned an invalid response")
+                    return
+                }
+
+                guard let data = data else {
+                    completionHandler(success: false, result: nil, errorString: "No data was returned by the request")
+                    return
+                }
+
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
 
                 ApisClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
 
             }
             task.resume()
         }
+
     }
 
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (success: Bool, result: AnyObject!, error: String) -> Void){
@@ -96,11 +130,9 @@ class ApisClient : NSObject {
     }
 
     class func sharedInstance() -> ApisClient {
-
         struct Singleton {
             static var sharedInstance = ApisClient()
         }
-
         return Singleton.sharedInstance
     }
 

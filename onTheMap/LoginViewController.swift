@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
         } else {
             ApisClient.sharedInstance().getSession(userTextField.text!, password: passwordTextField.text!) {(success, errorString) in
                 if success {
-                    self.getDataAuthUser()
+                    self.completeLogin()
                 } else {
                     dispatch_async(dispatch_get_main_queue()){
                         self.appDelegate.showAlert(self, message: errorString!)
@@ -67,57 +67,6 @@ class LoginViewController: UIViewController {
         let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SignUpMethod
         if let url = NSURL(string: urlString) {
             UIApplication.sharedApplication().openURL(url)
-        }
-    }
-
-    private func getDataAuthUser(){
-        var mutableMethod: String = ApisClient.Methods.GetStudentInfo
-        if let userId = self.appDelegate.userId {
-            mutableMethod = ApisClient.substituteKeyInMethod(mutableMethod, key: ApisClient.URLSKeys.UserId, value: userId)!
-
-            let urlString = ApisClient.Constants.BaseUdacityURL + mutableMethod
-            let url = NSURL(string: urlString)
-
-            if let url = url {
-                let request = NSMutableURLRequest(URL: url)
-
-                let session = NSURLSession.sharedSession()
-                let task = session.dataTaskWithRequest(request) { data, response, error in
-                    guard error == nil else {
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.appDelegate.showAlert(self, message: "Connection error")
-                        }
-                        return
-                    }
-
-                    guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                        dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Your request returned an invalid response")}
-                        return
-                    }
-
-                    guard let data = data else {
-                        dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "No data was returned by the request")}
-                        return
-                    }
-
-                    let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-
-                    let parsedResult: AnyObject!
-                    do {
-                        parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-                    } catch {
-                        dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "The login response data could not be parsed")}
-                        return
-                    }
-
-
-                    self.appDelegate.firstName = parsedResult["user"]!!["first_name"] as? String
-                    self.appDelegate.lastName = parsedResult["user"]!!["last_name"] as? String
-
-                    self.completeLogin()
-                }
-                task.resume()
-            }
         }
     }
 

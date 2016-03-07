@@ -18,16 +18,48 @@ extension ApisClient {
 
         taskForPOSTMethod(urlString, jsonBody: jsonBody) {(success, result, errorString) in
             if success {
-                if let _ = result["account"]!!["registered"] as? Bool {
-                    self.userID = result["account"]!!["key"] as? String
+                if let userID = result["account"]!!["key"] as? String {
+                    self.userID = userID
                     print(self.userID)
-                    //hostViewController.getDataAuthUser()
-                    completionHandler(success: true, errorString: errorString)
+                    self.getDataAuthUser(){(sucsess, errorString) in
+                        if success {
+                            completionHandler(success: true, errorString: errorString)
+                        } else {
+                            completionHandler(success: false, errorString: errorString)
+                        }
+                    }
                 } else {
-                    completionHandler(success: false, errorString: "The user does not appear as registered")
+                    completionHandler(success: false, errorString: "No userID")
                 }
             } else {
                 completionHandler(success: false, errorString: errorString)
+            }
+        }
+    }
+
+    func getDataAuthUser(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        var mutableMethod: String = ApisClient.Methods.GetStudentInfo
+
+        if let userId = self.userID {
+            mutableMethod = ApisClient.substituteKeyInMethod(mutableMethod, key: ApisClient.URLSKeys.UserId, value: userId)!
+
+            let urlString = ApisClient.Constants.BaseUdacityURL + mutableMethod
+
+            taskForGETMethod(urlString) { (success, result, errorString) -> Void in
+
+                if success {
+                    if let firstName = result["user"]!!["first_name"] as? String {
+                        self.firstName = firstName
+                    }
+
+                    if let lastName = result["user"]!!["last_name"] as? String {
+                        self.lastName = lastName
+                    }
+
+                    completionHandler(success: true, errorString: "")
+                } else {
+                    completionHandler(success: false, errorString: errorString)
+                }
             }
         }
     }

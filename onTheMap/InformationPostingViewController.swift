@@ -154,9 +154,9 @@ class InformationPostingViewController: UIViewController {
         request.addValue(ApisClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(ApisClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let uniqueKey = self.appDelegate.userId!
-        let firstName = self.appDelegate.firstName!
-        let lastName = self.appDelegate.lastName!
+        let uniqueKey = ApisClient.sharedInstance().userID!
+        let firstName = ApisClient.sharedInstance().firstName!
+        let lastName = ApisClient.sharedInstance().lastName!
         let mediaURL = mediaURLTextField.text!
 
         request.HTTPBody = "{\"uniqueKey\": \"\(uniqueKey)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString!)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(latitude!), \"longitude\": \(longitude!)}".dataUsingEncoding(NSUTF8StringEncoding)
