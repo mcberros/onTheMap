@@ -65,60 +65,19 @@ extension UdacityApiClient {
     }
 
 
-//    func logout() {
-//        let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SessionMethod
-//        if let url = NSURL(string: urlString) {
-//            let request = NSMutableURLRequest(URL: url)
-//
-//            request.HTTPMethod = "DELETE"
-//
-//            var xsrfCookie: NSHTTPCookie? = nil
-//            let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-//            for cookie in sharedCookieStorage.cookies! {
-//                if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-//            }
-//
-//            if let xsrfCookie = xsrfCookie {
-//                request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-//            }
-//
-//            let session = NSURLSession.sharedSession()
-//            let task = session.dataTaskWithRequest(request) { data, response, error in
-//                guard (error == nil) else{
-//                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Connection error")}
-//                    return
-//                }
-//
-//                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-//                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Your request returned an invalid response")}
-//                    return
-//                }
-//
-//                guard let data = data else {
-//                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "No data was returned by the request")}
-//                    return
-//                }
-//
-//                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-//
-//                let parsedResult: AnyObject!
-//                do {
-//                    parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-//                } catch {
-//                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "The logout response data could not be parsed")}
-//                    return
-//                }
-//
-//                guard let _ = parsedResult["session"]!!["id"] as? String else{
-//                    dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "There was an error in the parsed data for the logout")}
-//                    return
-//                }
-//
-//                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
-//                
-//                self.completeLogout()
-//            }
-//            task.resume()
-//            
-//        }
+    func logout(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        let urlString = UdacityApiClient.Constants.BaseUdacityURL + UdacityApiClient.Methods.SessionMethod
+
+        taskForDELETEMethod(urlString){ (success, result, errorString) in
+            if success {
+                guard let _ = result["session"]!!["id"] as? String else {
+                    completionHandler(success: false, errorString: "There was an error in the parsed data for the logout")
+                    return
+                }
+                completionHandler(success: true, errorString: "")
+            } else {
+                completionHandler(success: false, errorString: errorString)
+            }
+        }
+    }
 }

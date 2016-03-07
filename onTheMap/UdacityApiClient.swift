@@ -68,7 +68,6 @@ class UdacityApiClient : NSObject {
         if let url = url {
             let request = NSMutableURLRequest(URL: url)
 
-            let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request) { data, response, error in
                 guard error == nil else {
                     completionHandler(success: false, result: nil, errorString: "Connection error")
@@ -93,6 +92,49 @@ class UdacityApiClient : NSObject {
             task.resume()
         }
 
+    }
+
+    func taskForDELETEMethod(urlString: String, completionHandler: (success: Bool, result: AnyObject!, errorString: String) -> Void){
+
+        if let url = NSURL(string: urlString) {
+            let request = NSMutableURLRequest(URL: url)
+
+            request.HTTPMethod = "DELETE"
+
+            var xsrfCookie: NSHTTPCookie? = nil
+            let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+            for cookie in sharedCookieStorage.cookies! {
+                if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+            }
+
+            if let xsrfCookie = xsrfCookie {
+                request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+            }
+
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard (error == nil) else{
+                    completionHandler(success: false, result: nil, errorString: "Connection error")
+                    return
+                }
+
+                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                    completionHandler(success: false, result: nil, errorString: "Your request returned an invalid response")
+                    return
+                }
+
+                guard let data = data else {
+                    completionHandler(success: false, result: nil, errorString: "No data was returned by the request")
+                    return
+                }
+
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+
+                UdacityApiClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+
+            }
+            task.resume()
+            
+        }
     }
 
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (success: Bool, result: AnyObject!, error: String) -> Void){
