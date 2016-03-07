@@ -6,14 +6,49 @@
 //  Copyright © 2016 mcberros. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 class ParseApiClient: NSObject {
     var session: NSURLSession
+    var appDelegate: AppDelegate!
 
     override init() {
         session = NSURLSession.sharedSession()
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         super.init()
+    }
+
+    func taskForGETMethod(urlString: String, completionHandler: (success: Bool, result: AnyObject!, errorString: String) -> Void) {
+
+        if let url = NSURL(string: urlString) {
+            let request = NSMutableURLRequest(URL: url)
+
+            request.addValue(ParseApiClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseApiClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard (error == nil) else {
+                    completionHandler(success: false, result: nil, errorString: "Connection error")
+                    return
+                }
+
+                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                    completionHandler(success: false, result: nil, errorString: "Your request returned an invalid response")
+                    return
+                }
+
+                guard let data = data else {
+                    completionHandler(success: false, result: nil, errorString: "No data was returned by the request")
+                    return
+                }
+
+                ParseApiClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                
+            }
+            task.resume()
+        }
+
     }
 
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (success: Bool, result: AnyObject!, error: String) -> Void){
@@ -50,9 +85,9 @@ class ParseApiClient: NSObject {
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
 
-    class func sharedInstance() -> UdacityApiClient {
+    class func sharedInstance() -> ParseApiClient {
         struct Singleton {
-            static var sharedInstance = UdacityApiClient()
+            static var sharedInstance = ParseApiClient()
         }
         return Singleton.sharedInstance
     }

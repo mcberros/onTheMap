@@ -5,7 +5,6 @@
 //  Created by Carmen Berros on 06/03/16.
 //  Copyright © 2016 mcberros. All rights reserved.
 //
-import UIKit
 import Foundation
 
 extension UdacityApiClient {

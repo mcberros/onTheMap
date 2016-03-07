@@ -91,7 +91,6 @@ class UdacityApiClient : NSObject {
             }
             task.resume()
         }
-
     }
 
     func taskForDELETEMethod(urlString: String, completionHandler: (success: Bool, result: AnyObject!, errorString: String) -> Void){
