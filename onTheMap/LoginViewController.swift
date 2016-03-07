@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         if userTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             appDelegate.showAlert(self, message: "Empty Email or Password")
         } else {
-            ApisClient.sharedInstance().getSession(userTextField.text!, password: passwordTextField.text!) {(success, errorString) in
+            UdacityApiClient.sharedInstance().getSession(userTextField.text!, password: passwordTextField.text!) {(success, errorString) in
                 if success {
                     self.completeLogin()
                 } else {
@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signUpButtonTouch(sender: AnyObject) {
-        let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SignUpMethod
+        let urlString = UdacityApiClient.Constants.BaseUdacityURL + UdacityApiClient.Methods.SignUpMethod
         if let url = NSURL(string: urlString) {
             UIApplication.sharedApplication().openURL(url)
         }

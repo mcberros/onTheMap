@@ -1,5 +1,5 @@
 //
-//  ParseClient.swift
+//  UdacityApiClient.swift
 //  onTheMap
 //
 //  Created by Carmen Berros on 25/02/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ApisClient : NSObject {
+class UdacityApiClient : NSObject {
 
     var session: NSURLSession
 
@@ -55,7 +55,7 @@ class ApisClient : NSObject {
 
                 let newData = data.subdataWithRange(NSMakeRange(5, (data.length) - 5))
 
-                ApisClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                UdacityApiClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
 
             }
             task.resume()
@@ -87,7 +87,7 @@ class ApisClient : NSObject {
 
                 let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
 
-                ApisClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                UdacityApiClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
 
             }
             task.resume()
@@ -129,9 +129,9 @@ class ApisClient : NSObject {
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
 
-    class func sharedInstance() -> ApisClient {
+    class func sharedInstance() -> UdacityApiClient {
         struct Singleton {
-            static var sharedInstance = ApisClient()
+            static var sharedInstance = UdacityApiClient()
         }
         return Singleton.sharedInstance
     }

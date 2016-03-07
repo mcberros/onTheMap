@@ -1,5 +1,5 @@
 //
-//  ApisConvenience.swift
+//  UdacityApiConvenience.swift
 //  onTheMap
 //
 //  Created by Carmen Berros on 06/03/16.
@@ -8,10 +8,10 @@
 import UIKit
 import Foundation
 
-extension ApisClient {
+extension UdacityApiClient {
 
     func getSession(user: String, password: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SessionMethod
+        let urlString = UdacityApiClient.Constants.BaseUdacityURL + UdacityApiClient.Methods.SessionMethod
 
         let jsonBody: [String: AnyObject] = [
             "udacity": ["username": user, "password": password]]
@@ -38,12 +38,12 @@ extension ApisClient {
     }
 
     func getDataAuthUser(completionHandler: (success: Bool, errorString: String?) -> Void) {
-        var mutableMethod: String = ApisClient.Methods.GetStudentInfo
+        var mutableMethod: String = UdacityApiClient.Methods.GetStudentInfo
 
         if let userId = self.userID {
-            mutableMethod = ApisClient.substituteKeyInMethod(mutableMethod, key: ApisClient.URLSKeys.UserId, value: userId)!
+            mutableMethod = UdacityApiClient.substituteKeyInMethod(mutableMethod, key: UdacityApiClient.URLSKeys.UserId, value: userId)!
 
-            let urlString = ApisClient.Constants.BaseUdacityURL + mutableMethod
+            let urlString = UdacityApiClient.Constants.BaseUdacityURL + mutableMethod
 
             taskForGETMethod(urlString) { (success, result, errorString) -> Void in
 

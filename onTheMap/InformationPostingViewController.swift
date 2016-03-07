@@ -147,16 +147,16 @@ class InformationPostingViewController: UIViewController {
     }
 
     private func postStudentInformation(){
-        let urlString = ApisClient.Constants.BaseParseURL + ApisClient.Methods.GetStudentLocationsMethod
+        let urlString = ParseApiClient.Constants.BaseParseURL + ParseApiClient.Methods.GetStudentLocationsMethod
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
-        request.addValue(ApisClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue(ApisClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue(ParseApiClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseApiClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let uniqueKey = ApisClient.sharedInstance().userID!
-        let firstName = ApisClient.sharedInstance().firstName!
-        let lastName = ApisClient.sharedInstance().lastName!
+        let uniqueKey = UdacityApiClient.sharedInstance().userID!
+        let firstName = UdacityApiClient.sharedInstance().firstName!
+        let lastName = UdacityApiClient.sharedInstance().lastName!
         let mediaURL = mediaURLTextField.text!
 
         request.HTTPBody = "{\"uniqueKey\": \"\(uniqueKey)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString!)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(latitude!), \"longitude\": \(longitude!)}".dataUsingEncoding(NSUTF8StringEncoding)

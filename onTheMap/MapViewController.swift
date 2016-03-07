@@ -29,13 +29,13 @@ class MapViewController: UIViewController {
         let parameters = [ "limit": 100,
             "order": "-updatedAt"]
 
-        let urlString = ApisClient.Constants.BaseParseURL + ApisClient.Methods.GetStudentLocationsMethod + ApisClient.escapedParameters(parameters)
+        let urlString = ParseApiClient.Constants.BaseParseURL + ParseApiClient.Methods.GetStudentLocationsMethod + ParseApiClient.escapedParameters(parameters)
 
         if let url = NSURL(string: urlString) {
             let request = NSMutableURLRequest(URL: url)
 
-            request.addValue(ApisClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue(ApisClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue(ParseApiClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseApiClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
 
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request) { data, response, error in

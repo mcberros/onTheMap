@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
     }
 
     private func logout() {
-        let urlString = ApisClient.Constants.BaseUdacityURL + ApisClient.Methods.SessionMethod
+        let urlString = UdacityApiClient.Constants.BaseUdacityURL + UdacityApiClient.Methods.SessionMethod
         if let url = NSURL(string: urlString) {
             let request = NSMutableURLRequest(URL: url)
 
