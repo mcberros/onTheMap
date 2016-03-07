@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A4B660A1C836C04009EBD63 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4B66091C836C04009EBD63 /* InformationPostingViewController.swift */; };
+		6A8792D51C8C9E4C0024095C /* ApisConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8792D41C8C9E4C0024095C /* ApisConvenience.swift */; };
 		6AA0420B1C7CC2640058F384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0420A1C7CC2640058F384 /* AppDelegate.swift */; };
 		6AA042101C7CC2640058F384 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AA0420E1C7CC2640058F384 /* Main.storyboard */; };
 		6AA042121C7CC2640058F384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AA042111C7CC2640058F384 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		6A4B66091C836C04009EBD63 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		6A8792D41C8C9E4C0024095C /* ApisConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisConvenience.swift; sourceTree = "<group>"; };
 		6AA042071C7CC2640058F384 /* onTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA0420A1C7CC2640058F384 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AA0420F1C7CC2640058F384 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				6AA0423F1C7E134D0058F384 /* StudentInformation.swift */,
 				6AEB747E1C7F0B1900E57710 /* ApisClient.swift */,
 				6AEB74801C7F0D1E00E57710 /* ApisConstants.swift */,
+				6A8792D41C8C9E4C0024095C /* ApisConvenience.swift */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				6AEB74811C7F0D1E00E57710 /* ApisConstants.swift in Sources */,
 				6AA0423A1C7CDCBD0058F384 /* LoginViewController.swift in Sources */,
 				6AA0423C1C7E112D0058F384 /* LocationsListViewController.swift in Sources */,
+				6A8792D51C8C9E4C0024095C /* ApisConvenience.swift in Sources */,
 				6AEB74831C7F6AEA00E57710 /* TabBarController.swift in Sources */,
 				6AA042401C7E134D0058F384 /* StudentInformation.swift in Sources */,
 				6A4B660A1C836C04009EBD63 /* InformationPostingViewController.swift in Sources */,
