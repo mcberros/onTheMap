@@ -22,10 +22,6 @@ class TabBarController: UITabBarController {
         }
     }
 
-    @IBAction func pinButtonItemTouch(sender: AnyObject) {
-
-    }
-
 
     @IBAction func refreshButtonItemTouch(sender: AnyObject) {
     }

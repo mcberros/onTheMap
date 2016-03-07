@@ -344,7 +344,6 @@
                             </barButtonItem>
                             <barButtonItem image="Pin" id="zqc-AV-gh4">
                                 <connections>
-                                    <action selector="pinButtonItemTouch:" destination="79j-DT-ENn" id="ngE-aa-gdC"/>
                                     <segue destination="6Om-o4-RvD" kind="presentation" id="JAj-od-2NJ"/>
                                 </connections>
                             </barButtonItem>
