@@ -50,6 +50,46 @@ class ParseApiClient: NSObject {
 
     }
 
+    func taskForPOSTMethod(urlString: String, jsonBody: [String: AnyObject], completionHandler: (success: Bool, result: AnyObject!, errorString: String) -> Void){
+
+        if let url = NSURL(string: urlString) {
+
+            let request = NSMutableURLRequest(URL: url)
+
+            request.HTTPMethod = "POST"
+            request.addValue(ParseApiClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseApiClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            do {
+                request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+            }
+
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard error == nil else {
+                    completionHandler(success: false, result: nil, errorString: "Connection error")
+                    return
+                }
+
+                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                    print((response as? NSHTTPURLResponse)?.statusCode)
+                    completionHandler(success: false, result: nil, errorString: "Your request returned an invalid response")
+                    return
+                }
+
+                guard let data = data else {
+                    completionHandler(success: false, result: nil, errorString: "No data was returned by the request")
+                    return
+                }
+
+                ParseApiClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+
+            }
+            task.resume()
+        }
+
+    }
+
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (success: Bool, result: AnyObject!, error: String) -> Void){
 
         var parsedResult: AnyObject!
