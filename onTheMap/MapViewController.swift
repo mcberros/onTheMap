@@ -26,17 +26,21 @@ class MapViewController: UIViewController {
         ParseApiClient.sharedInstance().getLocationsList(){ (success, errorString) in
             if success {
                 self.students = self.appDelegate.students
-                self.getAnnotations()
-
-                if let annotations = self.annotations {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.mapView.addAnnotations(annotations)
-                    }
-                }
+                self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
                     self.appDelegate.showAlert(self, message: errorString!)
                 }
+            }
+        }
+    }
+
+    func refreshView() {
+        self.getAnnotations()
+
+        if let annotations = self.annotations {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.mapView.addAnnotations(annotations)
             }
         }
     }

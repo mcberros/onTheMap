@@ -29,14 +29,18 @@ class LocationsListViewController: UIViewController {
         ParseApiClient.sharedInstance().getLocationsList() { (success, errorString) in
             if success {
                 self.students = self.appDelegate.students
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.studentsTableView.reloadData()
-                }
+                self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
                     self.appDelegate.showAlert(self, message: errorString!)
                 }
             }
+        }
+    }
+
+    func refreshView() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.studentsTableView.reloadData()
         }
     }
 }

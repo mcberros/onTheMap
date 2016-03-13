@@ -24,6 +24,11 @@ class TabBarController: UITabBarController {
 
 
     @IBAction func refreshButtonItemTouch(sender: AnyObject) {
+        if let selectedView = self.selectedViewController as? LocationsListViewController {
+            selectedView.refreshView()
+        } else if let selectedView = self.selectedViewController as? MapViewController {
+            selectedView.refreshView()
+        }
     }
 
     override func viewDidLoad() {
