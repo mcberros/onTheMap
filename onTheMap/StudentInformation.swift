@@ -19,7 +19,6 @@ struct StudentInformation {
     var longitude: Double
     var createdAt: String
     var updatedAt: String
-    //var ACL: String
 
     init(dictionary: [String: AnyObject]){
         objectId = dictionary["objectId"] as! String
