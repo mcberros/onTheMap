@@ -11,11 +11,10 @@ import Foundation
 
 class ParseApiClient: NSObject {
     var session: NSURLSession
-    var appDelegate: AppDelegate!
+    var students: [StudentInformation] = [StudentInformation]()
 
     override init() {
         session = NSURLSession.sharedSession()
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         super.init()
     }
 

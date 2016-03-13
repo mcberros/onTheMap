@@ -20,12 +20,12 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.mapView.delegate = self
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        students = appDelegate.students
+        students = ParseApiClient.sharedInstance().students
         annotations = [MKPointAnnotation]()
 
         ParseApiClient.sharedInstance().getLocationsList(){ (success, errorString) in
             if success {
-                self.students = self.appDelegate.students
+                self.students = ParseApiClient.sharedInstance().students
                 self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){

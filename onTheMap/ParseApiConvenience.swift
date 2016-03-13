@@ -24,7 +24,7 @@ extension ParseApiClient {
                     return
                 }
 
-                self.appDelegate.students = StudentInformation.studentsFromResults(results)
+                self.students = StudentInformation.studentsFromResults(results)
                 completionHandler(success: true, errorString: "")
             } else {
                 completionHandler(success: false, errorString: errorString)
