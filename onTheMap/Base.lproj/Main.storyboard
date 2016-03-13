@@ -33,14 +33,14 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yd1-Nh-17b" userLabel="User Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yd1-Nh-17b" userLabel="User Text Field">
                                         <rect key="frame" x="0.0" y="51" width="260" height="33"/>
                                         <color key="backgroundColor" red="1" green="1" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.45793071549999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzj-9N-ez7" userLabel="Password Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzj-9N-ez7" userLabel="Password Text Field">
                                         <rect key="frame" x="0.0" y="102" width="260" height="33"/>
                                         <color key="backgroundColor" red="1" green="1" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.45793071549999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
