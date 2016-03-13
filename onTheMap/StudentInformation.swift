@@ -32,7 +32,6 @@ struct StudentInformation {
         longitude = dictionary["longitude"] as! Double
         createdAt = dictionary["createdAt"] as! String
         updatedAt = dictionary["updatedAt"] as! String
-        //ACL = dictionary[""]
     }
 
     static func studentsFromResults(results: [[String: AnyObject]]) -> [StudentInformation] {
