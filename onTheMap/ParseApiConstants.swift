@@ -24,4 +24,8 @@ extension ParseApiClient {
         static let Limit = "limit"
         static let Order = "order"
     }
+
+    struct ParameterValues {
+        static let AscendingUpdatedAt = "-updatedAt"
+    }
 }

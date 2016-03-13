@@ -13,9 +13,9 @@ extension ParseApiClient {
     func getLocationsList(completionHandler: (success: Bool, errorString: String?) -> Void){
 
         let parameters = [ ParseApiClient.ParameterKeys.Limit: 100,
-            ParseApiClient.ParameterKeys.Order: "-updatedAt"]
+            ParseApiClient.ParameterKeys.Order: ParseApiClient.ParameterValues.AscendingUpdatedAt]
 
-        let urlString = ParseApiClient.Constants.BaseParseURL + ParseApiClient.Methods.GetStudentLocationsMethod + ParseApiClient.escapedParameters(parameters)
+        let urlString = ParseApiClient.Constants.BaseParseURL + ParseApiClient.Methods.GetStudentLocationsMethod + ParseApiClient.escapedParameters(parameters as! [String : AnyObject])
 
         taskForGETMethod(urlString) { (success, result, errorString) -> Void in
             if success {
