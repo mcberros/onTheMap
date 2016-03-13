@@ -24,10 +24,20 @@ class TabBarController: UITabBarController {
 
 
     @IBAction func refreshButtonItemTouch(sender: AnyObject) {
-        if let selectedView = self.selectedViewController as? LocationsListViewController {
-            selectedView.refreshView()
-        } else if let selectedView = self.selectedViewController as? MapViewController {
-            selectedView.refreshView()
+        ParseApiClient.sharedInstance().getLocationsList() { (success, errorString) in
+            if success {
+                if let selectedView = self.selectedViewController as? LocationsListViewController {
+                    selectedView.students = ParseApiClient.sharedInstance().students
+                    selectedView.refreshView()
+                } else if let selectedView = self.selectedViewController as? MapViewController {
+                    selectedView.students = ParseApiClient.sharedInstance().students
+                    selectedView.refreshView()
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()){
+                    self.appDelegate.showAlert(self, message: errorString!)
+                }
+            }
         }
     }
 
