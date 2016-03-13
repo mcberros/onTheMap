@@ -155,60 +155,6 @@ class InformationPostingViewController: UIViewController {
         prepareUIForSecondtStep()
 
     }
-
-//    private func postStudentInformation(){
-//        let urlString = ParseApiClient.Constants.BaseParseURL + ParseApiClient.Methods.GetStudentLocationsMethod
-//        let url = NSURL(string: urlString)
-//        let request = NSMutableURLRequest(URL: url!)
-//        request.HTTPMethod = "POST"
-//        request.addValue(ParseApiClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-//        request.addValue(ParseApiClient.Constants.RestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        let uniqueKey = UdacityApiClient.sharedInstance().userID!
-//        let firstName = UdacityApiClient.sharedInstance().firstName!
-//        let lastName = UdacityApiClient.sharedInstance().lastName!
-//        let mediaURL = mediaURLTextField.text!
-//
-//        request.HTTPBody = "{\"uniqueKey\": \"\(uniqueKey)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString!)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(latitude!), \"longitude\": \(longitude!)}".dataUsingEncoding(NSUTF8StringEncoding)
-//
-//
-//        let session = NSURLSession.sharedSession()
-//        let task = session.dataTaskWithRequest(request) { data, response, error in
-//            guard error == nil else {
-//                dispatch_async(dispatch_get_main_queue()){
-//                    self.appDelegate.showAlert(self, message: "Connection error")
-//                }
-//                return
-//            }
-//
-//            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-//                print((response as? NSHTTPURLResponse)?.statusCode)
-//                dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "Your request returned an invalid response")}
-//                return
-//            }
-//
-//            guard let data = data else {
-//                dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: "No data was returned by the request")}
-//                return
-//            }
-//
-//            let parsedResult: AnyObject
-//
-//            do {
-//                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-//            } catch {
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.appDelegate.showAlert(self, message: "The data could not be parsed")
-//                }
-//                return
-//            }
-//
-//            dispatch_async(dispatch_get_main_queue()){
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            }
-//        }
-//        task.resume()
-//    }
 }
 
 extension InformationPostingViewController {
