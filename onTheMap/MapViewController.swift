@@ -22,6 +22,10 @@ class MapViewController: UIViewController {
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         students = ParseApiClient.sharedInstance().students
         annotations = [MKPointAnnotation]()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
 
         ParseApiClient.sharedInstance().getLocationsList(){ (success, errorString) in
             if success {
@@ -34,6 +38,7 @@ class MapViewController: UIViewController {
             }
         }
     }
+
 
     func refreshView() {
         self.getAnnotations()
