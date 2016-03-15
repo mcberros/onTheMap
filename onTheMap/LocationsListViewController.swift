@@ -10,7 +10,7 @@ import UIKit
 
 class LocationsListViewController: UIViewController {
 
-    var students: [StudentInformation]?
+    //var students: [StudentInformation]?
 
     var appDelegate: AppDelegate!
     
@@ -20,7 +20,7 @@ class LocationsListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        students = ParseApiClient.sharedInstance().students
+        //students = ParseApiClient.sharedInstance().students
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -28,7 +28,7 @@ class LocationsListViewController: UIViewController {
 
         ParseApiClient.sharedInstance().getLocationsList() { (success, errorString) in
             if success {
-                self.students = ParseApiClient.sharedInstance().students
+                //self.students = ParseApiClient.sharedInstance().students
                 self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
@@ -49,7 +49,8 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellReuseIdentifier = "StudentInformationTableViewCell"
-        let student = students![indexPath.row]
+        let students = ParseApiClient.sharedInstance().students
+        let student = students[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
 
         cell.textLabel!.text = "\(student.firstName) \(student.lastName)"
@@ -61,11 +62,13 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students!.count
+        let students = ParseApiClient.sharedInstance().students
+        return students.count
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let urlString = students![indexPath.row].mediaURL
+        let students = ParseApiClient.sharedInstance().students
+        let urlString = students[indexPath.row].mediaURL
         if let url = NSURL(string: urlString) {
             if !UIApplication.sharedApplication().openURL(url){
                 appDelegate.showAlert(self, message: "Invalid link")

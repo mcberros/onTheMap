@@ -27,7 +27,6 @@ class TabBarController: UITabBarController {
         ParseApiClient.sharedInstance().getLocationsList() { (success, errorString) in
             if success {
                 if let selectedView = self.selectedViewController as? LocationsListViewController {
-                    selectedView.students = ParseApiClient.sharedInstance().students
                     selectedView.refreshView()
                 } else if let selectedView = self.selectedViewController as? MapViewController {
                     selectedView.refreshView()
