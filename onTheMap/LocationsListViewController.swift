@@ -9,18 +9,11 @@
 import UIKit
 
 class LocationsListViewController: UIViewController {
-
-    //var students: [StudentInformation]?
-
-    var appDelegate: AppDelegate!
     
     @IBOutlet weak var studentsTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        //students = ParseApiClient.sharedInstance().students
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -32,7 +25,7 @@ class LocationsListViewController: UIViewController {
                 self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
-                    self.appDelegate.showAlert(self, message: errorString!)
+                    AlertHelper.showAlert(self, message: errorString!)
                 }
             }
         }
@@ -71,7 +64,7 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
         let urlString = students[indexPath.row].mediaURL
         if let url = NSURL(string: urlString) {
             if !UIApplication.sharedApplication().openURL(url){
-                appDelegate.showAlert(self, message: "Invalid link")
+                AlertHelper.showAlert(self, message: "Invalid link")
             }
         }
     }

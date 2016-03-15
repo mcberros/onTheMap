@@ -10,14 +10,12 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-    var appDelegate: AppDelegate!
-
     @IBAction func logoutButtonItemTouch(sender: AnyObject) {
         UdacityApiClient.sharedInstance().logout(){ (success, errorString) in
             if success {
                 self.completeLogout()
             } else {
-                dispatch_async(dispatch_get_main_queue()){self.appDelegate.showAlert(self, message: errorString!)}
+                dispatch_async(dispatch_get_main_queue()){AlertHelper.showAlert(self, message: errorString!)}
             }
         }
     }
@@ -33,7 +31,7 @@ class TabBarController: UITabBarController {
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()){
-                    self.appDelegate.showAlert(self, message: errorString!)
+                    AlertHelper.showAlert(self, message: errorString!)
                 }
             }
         }
@@ -41,8 +39,6 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     }
 
     private func completeLogout() {

@@ -21,6 +21,7 @@
 		6AA0423A1C7CDCBD0058F384 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA042391C7CDCBD0058F384 /* LoginViewController.swift */; };
 		6AA0423C1C7E112D0058F384 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0423B1C7E112D0058F384 /* LocationsListViewController.swift */; };
 		6AA042401C7E134D0058F384 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0423F1C7E134D0058F384 /* StudentInformation.swift */; };
+		6AEA24DC1C989C5C00C77B54 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA24DB1C989C5C00C77B54 /* AlertHelper.swift */; };
 		6AEB747F1C7F0B1900E57710 /* UdacityApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB747E1C7F0B1900E57710 /* UdacityApiClient.swift */; };
 		6AEB74811C7F0D1E00E57710 /* UdacityApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB74801C7F0D1E00E57710 /* UdacityApiConstants.swift */; };
 		6AEB74831C7F6AEA00E57710 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB74821C7F6AEA00E57710 /* TabBarController.swift */; };
@@ -65,6 +66,7 @@
 		6AA042391C7CDCBD0058F384 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6AA0423B1C7E112D0058F384 /* LocationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		6AA0423F1C7E134D0058F384 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		6AEA24DB1C989C5C00C77B54 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		6AEB747E1C7F0B1900E57710 /* UdacityApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityApiClient.swift; sourceTree = "<group>"; };
 		6AEB74801C7F0D1E00E57710 /* UdacityApiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityApiConstants.swift; sourceTree = "<group>"; };
 		6AEB74821C7F6AEA00E57710 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		6AA042091C7CC2640058F384 /* onTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				6AEA24DA1C989C3300C77B54 /* Helpers */,
 				6AA0423D1C7E12FA0058F384 /* Model */,
 				6AA042381C7CDC620058F384 /* View Controllers */,
 				6AA0420A1C7CC2640058F384 /* AppDelegate.swift */,
@@ -196,6 +199,14 @@
 				6A8792D71C8E068B0024095C /* Udacity */,
 			);
 			name = Clients;
+			sourceTree = "<group>";
+		};
+		6AEA24DA1C989C3300C77B54 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6AEA24DB1C989C5C00C77B54 /* AlertHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		6AEB74701C7E293C00E57710 /* Assets */ = {
@@ -351,6 +362,7 @@
 				6A8792DA1C8E080C0024095C /* ParseApiClient.swift in Sources */,
 				6AA0423C1C7E112D0058F384 /* LocationsListViewController.swift in Sources */,
 				6A8792D51C8C9E4C0024095C /* UdacityApiConvenience.swift in Sources */,
+				6AEA24DC1C989C5C00C77B54 /* AlertHelper.swift in Sources */,
 				6AEB74831C7F6AEA00E57710 /* TabBarController.swift in Sources */,
 				6A8792DE1C8E10F60024095C /* ParseApiConvenience.swift in Sources */,
 				6AA042401C7E134D0058F384 /* StudentInformation.swift in Sources */,

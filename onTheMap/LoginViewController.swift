@@ -14,15 +14,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
 
-    var appDelegate: AppDelegate!
     var tapRecognizer: UITapGestureRecognizer? = nil
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         // tapRecognizer
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
@@ -49,14 +46,14 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
         if userTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            appDelegate.showAlert(self, message: "Empty Email or Password")
+            AlertHelper.showAlert(self, message: "Empty Email or Password")
         } else {
             UdacityApiClient.sharedInstance().getSession(userTextField.text!, password: passwordTextField.text!) {(success, errorString) in
                 if success {
                     self.completeLogin()
                 } else {
                     dispatch_async(dispatch_get_main_queue()){
-                        self.appDelegate.showAlert(self, message: errorString!)
+                        AlertHelper.showAlert(self, message: errorString!)
                     }
                 }
             }

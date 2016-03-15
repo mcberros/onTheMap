@@ -11,14 +11,12 @@ import MapKit
 
 class MapViewController: UIViewController {
     var annotations: [MKPointAnnotation]?
-    var appDelegate: AppDelegate!
 
     @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         annotations = [MKPointAnnotation]()
     }
 
@@ -30,7 +28,7 @@ class MapViewController: UIViewController {
                 self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
-                    self.appDelegate.showAlert(self, message: errorString!)
+                    AlertHelper.showAlert(self, message: errorString!)
                 }
             }
         }
@@ -92,7 +90,7 @@ extension MapViewController: MKMapViewDelegate {
             if let toOpen = view.annotation?.subtitle! {
                 if let url = NSURL(string: toOpen) {
                     if !UIApplication.sharedApplication().openURL(url){
-                        appDelegate.showAlert(self, message: "Invalid link")
+                        AlertHelper.showAlert(self, message: "Invalid link")
                     }
                 }
             }
