@@ -30,7 +30,6 @@ class TabBarController: UITabBarController {
                     selectedView.students = ParseApiClient.sharedInstance().students
                     selectedView.refreshView()
                 } else if let selectedView = self.selectedViewController as? MapViewController {
-                    selectedView.students = ParseApiClient.sharedInstance().students
                     selectedView.refreshView()
                 }
             } else {

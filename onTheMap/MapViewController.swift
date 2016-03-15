@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-    var students: [StudentInformation]?
     var annotations: [MKPointAnnotation]?
     var appDelegate: AppDelegate!
 
@@ -20,7 +19,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.mapView.delegate = self
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        students = ParseApiClient.sharedInstance().students
         annotations = [MKPointAnnotation]()
     }
 
@@ -29,7 +27,6 @@ class MapViewController: UIViewController {
 
         ParseApiClient.sharedInstance().getLocationsList(){ (success, errorString) in
             if success {
-                self.students = ParseApiClient.sharedInstance().students
                 self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
@@ -51,7 +48,8 @@ class MapViewController: UIViewController {
     }
 
     private func getAnnotations() {
-        for student in self.students! {
+        let students = ParseApiClient.sharedInstance().students
+        for student in students {
             let lat = CLLocationDegrees(student.latitude)
             let long = CLLocationDegrees(student.longitude)
 
