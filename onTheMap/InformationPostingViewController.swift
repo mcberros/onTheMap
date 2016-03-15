@@ -104,12 +104,9 @@ class InformationPostingViewController: UIViewController {
     }
 
     private func forwardGeocoding(address: String) {
+        self.activityIndicator.startAnimating()
+
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
-
-            dispatch_async(dispatch_get_main_queue()){
-                self.activityIndicator.startAnimating()
-            }
-
             guard error == nil else {
                 dispatch_async(dispatch_get_main_queue()){
                     self.appDelegate.showAlert(self, message: "Geocoding failed")
