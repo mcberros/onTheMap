@@ -11,7 +11,6 @@ import Foundation
 
 class ParseApiClient: NSObject {
     var session: NSURLSession
-    var students: [StudentInformation] = [StudentInformation]()
 
     override init() {
         session = NSURLSession.sharedSession()

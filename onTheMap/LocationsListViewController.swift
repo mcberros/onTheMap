@@ -42,7 +42,7 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellReuseIdentifier = "StudentInformationTableViewCell"
-        let students = ParseApiClient.sharedInstance().students
+        let students = Students.sharedInstance().students
         let student = students[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
 
@@ -55,12 +55,12 @@ extension LocationsListViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let students = ParseApiClient.sharedInstance().students
+        let students = Students.sharedInstance().students
         return students.count
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let students = ParseApiClient.sharedInstance().students
+        let students = Students.sharedInstance().students
         let urlString = students[indexPath.row].mediaURL
         if let url = NSURL(string: urlString) {
             if !UIApplication.sharedApplication().openURL(url){

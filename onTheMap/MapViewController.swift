@@ -46,7 +46,7 @@ class MapViewController: UIViewController {
     }
 
     private func getAnnotations() {
-        let students = ParseApiClient.sharedInstance().students
+        let students = Students.sharedInstance().students
         for student in students {
             let lat = CLLocationDegrees(student.latitude)
             let long = CLLocationDegrees(student.longitude)
