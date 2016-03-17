@@ -53,7 +53,7 @@ class InformationPostingViewController: UIViewController {
 
     @IBAction func findOnTheMapButtonTouch(sender: AnyObject) {
         if whereTextField.text!.isEmpty {
-            AlertHelper.showAlert(self, message: "Empty Location")
+            self.showAlert("Empty Location")
         } else {
             forwardGeocoding(whereTextField.text!)
         }
@@ -61,7 +61,7 @@ class InformationPostingViewController: UIViewController {
 
     @IBAction func submitButtonTouch(sender: AnyObject) {
         if mediaURLTextField.text!.isEmpty {
-            AlertHelper.showAlert(self, message: "The URL is empty")
+            self.showAlert("The URL is empty")
         } else {
             ParseApiClient.sharedInstance().postStudentInformation(mediaURLTextField.text!, latitude: latitude!, longitude: longitude!, mapString: mapString!) { (success, errorString) in
                 if success {
@@ -70,7 +70,7 @@ class InformationPostingViewController: UIViewController {
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()){
-                        AlertHelper.showAlert(self, message: errorString!)
+                        self.showAlert(errorString!)
                     }
                 }
             }
@@ -107,7 +107,7 @@ class InformationPostingViewController: UIViewController {
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
             guard error == nil else {
                 dispatch_async(dispatch_get_main_queue()){
-                    AlertHelper.showAlert(self, message: "Geocoding failed")
+                    self.showAlert("Geocoding failed")
                     self.activityIndicator.stopAnimating()
                 }
                 return
@@ -115,7 +115,7 @@ class InformationPostingViewController: UIViewController {
 
             guard (placemarks?.count > 0) else {
                 dispatch_async(dispatch_get_main_queue()){
-                    AlertHelper.showAlert(self, message: "No placemarks found")
+                    self.showAlert("No placemarks found")
                     self.activityIndicator.stopAnimating()
                 }
                 return
@@ -138,7 +138,7 @@ class InformationPostingViewController: UIViewController {
 
     private func nextStep(){
         guard let _ = self.longitude else {
-            dispatch_async(dispatch_get_main_queue()){AlertHelper.showAlert(self, message: "There are no coordinates for this place")}
+            dispatch_async(dispatch_get_main_queue()){self.showAlert("There are no coordinates for this place")}
             return
         }
 

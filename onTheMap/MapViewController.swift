@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
                 self.refreshView()
             } else {
                 dispatch_async(dispatch_get_main_queue()){
-                    AlertHelper.showAlert(self, message: errorString!)
+                    self.showAlert(errorString!)
                 }
             }
         }
@@ -90,7 +90,7 @@ extension MapViewController: MKMapViewDelegate {
             if let toOpen = view.annotation?.subtitle! {
                 if let url = NSURL(string: toOpen) {
                     if !UIApplication.sharedApplication().openURL(url){
-                        AlertHelper.showAlert(self, message: "Invalid link")
+                        self.showAlert("Invalid link")
                     }
                 }
             }

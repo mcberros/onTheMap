@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
             if success {
                 self.completeLogout()
             } else {
-                dispatch_async(dispatch_get_main_queue()){AlertHelper.showAlert(self, message: errorString!)}
+                dispatch_async(dispatch_get_main_queue()){self.showAlert(errorString!)}
             }
         }
     }
@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()){
-                    AlertHelper.showAlert(self, message: errorString!)
+                    self.showAlert(errorString!)
                 }
             }
         }

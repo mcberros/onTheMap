@@ -33,27 +33,27 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.addKeyboardDismissRecognizer()
-        self.subscribeToKeyboardNotifications()
+        addKeyboardDismissRecognizer()
+        subscribeToKeyboardNotifications()
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
-        self.removeKeyboardDismissRecognizer()
-        self.unsubscribeToKeyboardNotifications()
+        removeKeyboardDismissRecognizer()
+        unsubscribeToKeyboardNotifications()
     }
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
         if userTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            AlertHelper.showAlert(self, message: "Empty Email or Password")
+            self.showAlert("Empty Email or Password")
         } else {
             UdacityApiClient.sharedInstance().getSession(userTextField.text!, password: passwordTextField.text!) {(success, errorString) in
                 if success {
                     self.completeLogin()
                 } else {
                     dispatch_async(dispatch_get_main_queue()){
-                        AlertHelper.showAlert(self, message: errorString!)
+                        self.showAlert(errorString!)
                     }
                 }
             }
