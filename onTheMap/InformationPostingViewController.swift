@@ -91,7 +91,7 @@ class InformationPostingViewController: UIViewController {
         submitButton.hidden = true
     }
 
-    private func prepareUIForSecondtStep() {
+    private func prepareUIForSecondStep() {
         whereLabel.hidden = true
         whereTextField.hidden = true
         findOnTheMapButton.hidden = true
@@ -131,6 +131,7 @@ class InformationPostingViewController: UIViewController {
             self.mapString = self.whereTextField!.text
             self.latitude = self.coordinate!.latitude
             self.longitude = self.coordinate!.longitude
+
             self.nextStep()
 
         }
@@ -142,12 +143,19 @@ class InformationPostingViewController: UIViewController {
             return
         }
 
+        let latDelta: CLLocationDegrees = 0.001
+        let longDelta: CLLocationDegrees = 0.001
+        let theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(coordinate!, theSpan)
+        mapView?.setRegion(region, animated: true)
+
+
         let pointAnnotation:MKPointAnnotation = MKPointAnnotation()
         pointAnnotation.coordinate = coordinate!
         mapView?.addAnnotation(pointAnnotation)
-        mapView?.centerCoordinate = coordinate!
 
-        prepareUIForSecondtStep()
+        prepareUIForSecondStep()
 
     }
 }
