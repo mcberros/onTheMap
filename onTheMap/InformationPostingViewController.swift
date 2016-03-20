@@ -103,12 +103,13 @@ class InformationPostingViewController: UIViewController {
 
     private func forwardGeocoding(address: String) {
         self.activityIndicator.startAnimating()
+        self.view.alpha = 0.5
 
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
             guard error == nil else {
                 dispatch_async(dispatch_get_main_queue()){
                     self.showAlert("Geocoding failed")
-                    self.activityIndicator.stopAnimating()
+                    self.stopGeocodingActivityIndications()
                 }
                 return
             }
@@ -116,13 +117,13 @@ class InformationPostingViewController: UIViewController {
             guard (placemarks?.count > 0) else {
                 dispatch_async(dispatch_get_main_queue()){
                     self.showAlert("No placemarks found")
-                    self.activityIndicator.stopAnimating()
+                    self.stopGeocodingActivityIndications()
                 }
                 return
             }
 
             dispatch_async(dispatch_get_main_queue()){
-                self.activityIndicator.stopAnimating()
+                self.stopGeocodingActivityIndications()
             }
 
             let placemark = placemarks?[0]
@@ -135,6 +136,11 @@ class InformationPostingViewController: UIViewController {
             self.nextStep()
 
         }
+    }
+
+    private func stopGeocodingActivityIndications() {
+        activityIndicator.stopAnimating()
+        view.alpha = 1.0
     }
 
     private func nextStep(){
